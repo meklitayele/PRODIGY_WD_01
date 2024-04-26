@@ -1,0 +1,184 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Satoshi', sans-serif;
+}
+
+.logo {
+  background: #1C0A00;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.EthLogo {
+  height: 55px;
+  width: 150px;
+}
+
+.login {
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 20px;
+  opacity: 0.7;
+}
+
+.login:hover {
+  opacity: 1;
+}
+ .PlacesContainer {
+   background: #5C2C00;
+   width: 100%;
+   text-align: center;
+   color: #fff;
+ }
+
+ .PlacesContainer h1 {
+   font-family: 'Gambetta', serif;
+   font-size: 35px;
+ }
+.navBar {
+  background: #361500;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.navDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+.navDiv ul {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+
+}
+
+.navDiv li {
+  list-style: none;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.navDiv li a {
+  display: block;
+  text-decoration: none;
+  padding: 10px;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.navDiv li a:hover {
+  color: #fff;
+  background-color: #000000;
+}
+.hotel-display {
+    background-color: #f5f1e8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* display: grid; */
+    /* grid-template-columns: 18rem,; */
+    justify-content: space-evenly;
+  }
+  .logos{
+    padding:10px 15px;
+  max-width: 5rem;
+  }
+  
+
+  .hotel-image img {
+    width: 18rem;
+    height: 15rem;
+    padding : .5rem;
+    float:left;
+  }
+  
+  /* Hotel Details */
+  .hotel-details {
+    flex: 1;
+  }
+  
+  /* Hotel Name */
+ .hotel-name {
+    font-size: 24px;
+    color: #3d281f;
+    margin-bottom: 10px;
+  }
+  
+  /* Hotel Description */
+  .hotel-description {
+    color: #5d4c43;
+    margin-bottom: 20px;
+  }
+  
+  /* Rating */
+ .rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+ .rating-label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+   .stars {
+    font-size: 20px;
+    color: #ffc107;
+  }
+  
+  
+  .services {
+    margin-bottom: 20px;
+  }
+  
+  .services h3 {
+    font-size: 18px;
+    color: #3d281f;
+    margin-bottom: 10px;
+  }
+  
+  .services ul {
+    list-style: disc;
+    margin-left: 20px;
+    color: #5d4c43;
+  }
+  /* Visit Hotel */
+  .visit-hotel {
+    margin-top: 10px;
+  }
+  
+  .visit-hotel a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2d1e18;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+.visit-hotel a:hover {
+    background-color: #3f211c;
+  }
+  .under{
+    background-color:#74514b;
+    color :white;
+    padding-left:2rem;
+  }
+ textarea{
+  resize: none;
+    width: 30%;
+    height: 20px;
+    border: none;
+    background: #EBE4D7;
+    border-bottom: 1px solid #000000;
+ }
