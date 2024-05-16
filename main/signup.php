@@ -48,13 +48,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         
         $sql = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$hashedPassword')";
+        
+        $sql = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$hashedPassword')";
         if ($conn->query($sql) === TRUE) {
             header("Location: login.php");
             $error = "Sign up successful";
             exit();
         } else {
             $error = "Error: " . $sql . "<br>" . $conn->error;
+            $error = "Error: " . $sql . "<br>" . $conn->error;
         }
+
+        $stmt->close();
     }
 }
 ?>
