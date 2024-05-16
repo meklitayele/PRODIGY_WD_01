@@ -11,7 +11,11 @@
   display: flex;
   justify-content: space-between;
 }
-
+.error{
+  color: red;
+  font-size:xx-small;
+  padding-bottom: 5px;
+}
 .EthLogo {
   height: 80px;
   width: 180px;
