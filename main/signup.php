@@ -1,27 +1,21 @@
 <?php
-// Database connection parameters
 $host = "localhost";
 $username = "root";
 $password = "27302223Leah*";
 $database = "travel";
 
-// Establish a connection to the database
 $conn = new mysqli($host, $username, $password, $database);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data and sanitize inputs
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $confirmPassword = mysqli_real_escape_string($conn, $_POST['confirm']);
     
-    // Check if passwords match
     if ($password !== $confirmPassword) {
         $error = "Passwords do not match.";
     } else {
