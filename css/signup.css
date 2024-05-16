@@ -34,7 +34,11 @@ body {
     color: #000000;
 
 }
-
+.error{
+    color: red;
+    font-size:xx-small;
+    padding-bottom: 5px;
+}
 h1 {
     font-size: 2rem;
     color: #000000;
