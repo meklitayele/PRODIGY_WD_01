@@ -42,7 +42,14 @@
         <img src="../ARBAMINCH/images/arbaminch-resort.jpg" alt="Hotel Image" />
       </div>
       <div class="hotel-details">
-        <h2 class="hotel-name">Arba Minch Resort Hotel</h2>
+        <h2 class="hotel-name"> <a
+          href="https://www.tripadvisor.com/Hotel_Review-g776853-d19256795-Reviews-Emerald_Resort-Arba_Minch_Southern_Nations_Nationalities_and_People_s_Region.html"
+          target="_blank"
+          >Arba Minch Resort Hotel </a></h2>
+          <a
+          href="https://www.tripadvisor.com/Hotel_Review-g776853-d19256795-Reviews-Emerald_Resort-Arba_Minch_Southern_Nations_Nationalities_and_People_s_Region.html"
+          target="_blank"
+          >
         <p class="hotel-description">
           Arba Minch Resort Hotel situated near the town center, this hotel
           provides comfortable rooms, a restaurant, a bar, and conference
@@ -56,24 +63,22 @@
             <li>Parking Space</li>
           </ul>
         </div>
+          </a>
       </div>
-    </div>
-    <div class="under">
       <div class="rating">
         <span class="rating-label">Rating:</span>
         <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
       </div>
+    </div>
+    <div class="under">
+  
       <div class="review">
         <label for="review-text">Write a review:</label>
         <textarea id="review-text" class="review-textarea" rows="4"></textarea>
       </div>
 
       <div class="visit-hotel">
-        <a
-          href="https://www.tripadvisor.com/Hotel_Review-g776853-d19256795-Reviews-Emerald_Resort-Arba_Minch_Southern_Nations_Nationalities_and_People_s_Region.html"
-          target="_blank"
-          >Visit Hotel Website</a
-        >
+     
         <a
             href="../Hotels/reservation.php"
             >Make a reservation</a>
@@ -81,13 +86,21 @@
     </div>
     <div class="hotel-display">
       <div class="hotel-image">
-        <img
+        <a
+        href="https://hailehotelsandresorts.com/arbaminch_resort/"
+        target="_blank"
+        > <img
           src="../ARBAMINCH/images/haile-resort-arba-minch.jpg"
           alt="Hotel Image"
         />
+        </a>
       </div>
       <div class="hotel-details">
-        <h2 class="hotel-name">Haile Resort Arba Minch</h2>
+        <a
+          href="https://hailehotelsandresorts.com/arbaminch_resort/"
+          target="_blank"
+          >
+        <h2 class="hotel-name">Haile Resort Arba Minch </h2>
         <p class="hotel-description">
           Haile-Arba Minch is a 107 room four-star resort located at a grand
           view overlooking the twin lakes of Abaya and Chamo along the beautiful
@@ -103,13 +116,15 @@
             <li>24-hour Room Service</li>
           </ul>
         </div>
+      </a>
       </div>
-    </div>
-    <div class="under">
       <div class="rating">
         <span class="rating-label">Rating:</span>
         <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
       </div>
+    </div>
+    <div class="under">
+     
       <div class="review">
         <label for="review-text">Write a review:</label>
         <textarea id="review-text" class="review-textarea" rows="4"></textarea>
@@ -117,16 +132,15 @@
 
       <div class="visit-hotel">
         <a
-          href="https://hailehotelsandresorts.com/arbaminch_resort/"
-          target="_blank"
-          >Visit Hotel Website</a
-        > 
-        <a
             href="../Hotels/reservation.php"
             >Make a reservation</a>
       </div>
     </div>
     <div class="hotel-display">
+      <a
+          href="https://www.hotels.com/ho618934080/paradise-lodge-arbaminch-arba-minch-ethiopia/?locale=en_GB&pos=HCOM_ME&recommendations-overlay=recommendations-overlay&siteid=310000033"
+          target="_blank"
+          >
       <div class="hotel-image">
         <img src="../ARBAMINCH/images/paradise.webp" alt="Hotel Image" />
       </div>
@@ -148,23 +162,20 @@
           </ul>
         </div>
       </div>
-    </div>
-    <div class="under">
       <div class="rating">
         <span class="rating-label">Rating:</span>
         <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
       </div>
+      </a>
+    </div>
+    <div class="under">
       <div class="review">
         <label for="review-text">Write a review:</label>
         <textarea id="review-text" class="review-textarea" rows="4"></textarea>
       </div>
 
       <div class="visit-hotel">
-        <a
-          href="https://www.hotels.com/ho618934080/paradise-lodge-arbaminch-arba-minch-ethiopia/?locale=en_GB&pos=HCOM_ME&recommendations-overlay=recommendations-overlay&siteid=310000033"
-          target="_blank"
-          >Visit Hotel Website</a
-        > <a
+     <a
         href="../Hotels/reservation.php"
         >Make a reservation</a>
        
@@ -172,3 +183,58 @@
     </div>
   </body>
 </html>
+<style>
+  .review{
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  align-content: center;
+ }
+   a{
+  text-decoration: none;
+  color: #2d1e18;
+}
+.rating-label{
+  color: #2d1e18;
+}
+.review-textarea{
+  padding: 2px;
+  margin-top: 4px;
+}
+.review-text{
+  margin-bottom: 2px;
+}
+</style>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "27302223Leah*";
+$dbname = "travel";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $hotel_id = (int) $_POST["hotel_id"];
+  $review_text = $_POST["review_text"];
+  if(isset($_POST["review_rating"])){
+  $review_rating = (int)$_POST["review_rating"];
+  }
+  $review_id =  $hotel_id . "-" . time();
+  $review_date = date('Y-m-d H:i:s');
+
+  $sql = "INSERT INTO hotel_reviews (review_id, hotel_id, review_text, review_rating, review_date)
+          VALUES (?, ?, ?, ?, ?)";
+
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("sisis", $review_id, $hotel_id, $review_text, $review_rating, $review_date);
+
+  if ($stmt->execute()) {
+    echo "Review submitted successfully!";
+  } else {
+      echo "Error submitting review: " . $stmt->error;
+  }
+
+  $stmt->close();
+}
+?>

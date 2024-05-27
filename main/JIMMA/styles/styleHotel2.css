@@ -3,6 +3,8 @@
   padding: 0px;
   font-family: 'Satoshi', sans-serif;
 }
+
+
 .logo{
   background: #1C0A00;
   padding:10px 15px;
@@ -364,7 +366,7 @@ footer .elements {
     background-color: #3f211c;
   }
   .under{
-    background-color:#74514b;
+    background-color:#341511;
     color :white;
     padding:2rem;
   }

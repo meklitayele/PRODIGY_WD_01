@@ -37,11 +37,18 @@
       </div>
       <div class="hotel-display">
         <div class="hotel-image">
+        <a href="https://ethiobinary.com/centraljimma/" target="_blank"
+>
           <img src="images/jimmac1.jpg" alt="Hotel Image" />
+          </a>
         </div>
         <div class="hotel-details">
-          <h2 class="hotel-name">Central Jimma Hotel</h2>
+        <a href="https://ethiobinary.com/centraljimma/" target="_blank"
+>
+          <h2 class="hotel-name">  
+          Central Jimma Hotel </h2>     
           <p class="hotel-description">
+  
             Central Jimma Hotel is a three star hotel, located close to the
             commercial center of the city. The hotel facility consists of bar,
             restaurant, swimming pool, and beautiful garden to sit and relax. It
@@ -58,27 +65,40 @@
               <li>Restaurant and Bar</li>
               <li>24-hour Room Service</li>
             </ul>
+            </a>
           </div>
-        </div>
-      </div>
-      <div class="under">
-        <div class="rating">
+          <div class="rating">
           <span class="rating-label">Rating:</span>
           <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
         </div>
-        <div class="review">
-          <label for="review-text">Write a review:</label>
-          <textarea
-            id="review-text"
-            class="review-textarea"
-            rows="4"
-          ></textarea>
         </div>
+      </div>
+      <div class="under">
+        
+      <h3>Leave a Review</h3>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+        <input class="hidden" name="hotel_id" value="7"> 
+        <div>
+            <label for="review_text">Review:</label>
+            <textarea name="review_text" id="review_text" rows="5" required></textarea>
+        </div>
+        <div class="rating">
+            <input type="radio" id="star5" name="review_rating" value="5" />
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="review_rating" value="4" />
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="review_rating" value="3" />
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="review_rating" value="2" />
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="review_rating" value="1" />
+            <label for="star1">1 star</label>
+        </div>
+        <button type="submit">Submit Review</button>
+    </form>
 
         <div class="visit-hotel">
-          <a href="https://ethiobinary.com/centraljimma/" target="_blank"
-            >Visit Hotel Website</a
-          >
+         
           <a
             href="../Hotels/reservation.php"
             >Make a reservation</a>
@@ -86,9 +106,14 @@
       </div>
       <div class="hotel-display">
         <div class="hotel-image">
+          <a href="https://www.awetugrandhotel.com/" target="_blank"
+>
           <img src="images/awetu out side.jpg" alt="Hotel Image" />
+          </a>
         </div>
         <div class="hotel-details">
+          <a href="https://www.awetugrandhotel.com/" target="_blank"
+>
           <h2 class="hotel-name">Awetu Hotel</h2>
           <p class="hotel-description">
             Awetu Hotel is a three star hotel, located close to the commercial
@@ -107,27 +132,39 @@
               <li>Restaurant and Bar</li>
               <li>24-hour Room Service</li>
             </ul>
+            </a>
           </div>
-        </div>
-      </div>
-      <div class="under">
-        <div class="rating">
+          <div class="rating">
           <span class="rating-label">Rating:</span>
           <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
         </div>
-        <div class="review">
-          <label for="review-text">Write a review:</label>
-          <textarea
-            id="review-text"
-            class="review-textarea"
-            rows="4"
-          ></textarea>
         </div>
+      </div>
+      <div class="under">
+          
+      <h3>Leave a Review</h3>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+        <input class="hidden" name="hotel_id" value="8"> 
+        <div>
+            <label for="review_text">Review:</label>
+            <textarea name="review_text" id="review_text" rows="5" required></textarea>
+        </div>
+        <div class="rating">
+            <input type="radio" id="star5" name="review_rating" value="5" />
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="review_rating" value="4" />
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="review_rating" value="3" />
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="review_rating" value="2" />
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="review_rating" value="1" />
+            <label for="star1">1 star</label>
+        </div>
+        <button type="submit">Submit Review</button>
+    </form>
 
         <div class="visit-hotel">
-          <a href="https://www.awetugrandhotel.com/" target="_blank"
-            >Visit Hotel Website</a
-          >
           <a
             href="../Hotels/reservation.php"
             >Make a reservation</a>
@@ -135,9 +172,14 @@
       </div>
       <div class="hotel-display">
         <div class="hotel-image">
+          <a href="https://ethiobinary.com/centraljimma/" target="_blank"
+>
           <img src=".\images\dololo.jpg " alt="Hotel Image" />
+          </a>
         </div>
         <div class="hotel-details">
+           <a href="https://ethiobinary.com/centraljimma/" target="_blank"
+>
           <h2 class="hotel-name">Central Jimma Hotel</h2>
           <p class="hotel-description">
             Central Jimma Hotel is a three star hotel, located close to the
@@ -156,30 +198,68 @@
               <li>Restaurant and Bar</li>
               <li>24-hour Room Service</li>
             </ul>
+            </a>
           </div>
-        </div>
-      </div>
-      <div class="under">
-        <div class="rating">
+          <div class="rating">
           <span class="rating-label">Rating:</span>
           <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
         </div>
-        <div class="review">
-          <label for="review-text">Write a review:</label>
-          <textarea
-            id="review-text"
-            class="review-textarea"
-            rows="4"
-          ></textarea>
         </div>
+      </div>
+      <div class="under">
+       
+      <h3>Leave a Review</h3>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+        <input class="hidden" name="hotel_id" value="9"> 
+        <div>
+            <label for="review_text">Review:</label>
+            <textarea name="review_text" id="review_text" rows="5" required></textarea>
+        </div>
+        <div class="rating">
+            <input type="radio" id="star5" name="review_rating" value="5" />
+            <label for="star5">5 stars</label>
+            <input type="radio" id="star4" name="review_rating" value="4" />
+            <label for="star4">4 stars</label>
+            <input type="radio" id="star3" name="review_rating" value="3" />
+            <label for="star3">3 stars</label>
+            <input type="radio" id="star2" name="review_rating" value="2" />
+            <label for="star2">2 stars</label>
+            <input type="radio" id="star1" name="review_rating" value="1" />
+            <label for="star1">1 star</label>
+        </div>
+        <button type="submit">Submit Review</button>
+    </form>
 
         <div class="visit-hotel">
-          <a href="hotel-website.com" target="_blank">Visit Hotel Website</a>
           <a
             href="../Hotels/reservation.php"
             >Make a reservation</a>
         </div>
-      </div>
-    </div>
-  </body>
+
+</div>
+</div>
+</body>
 </html>
+
+<style>
+  .review{
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  align-content: center;
+ }
+   a{
+  text-decoration: none;
+  color: #2d1e18;
+}
+.rating-label{
+  color: #2d1e18;
+}
+.review-textarea{
+  padding: 2px;
+  margin-top: 4px;
+}
+.review-text{
+  margin-bottom: 2px;
+}
+</style>
