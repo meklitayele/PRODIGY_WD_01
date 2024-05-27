@@ -1,3 +1,11 @@
+<?php 
+$servername = "localhost";
+$username = "root";
+$password = "27302223Leah*";
+$dbname = "travel";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -94,6 +102,36 @@
         </div>
         <button type="submit">Submit Review</button>
     </form>
+    <?php
+    $sql = "
+    SELECT
+        h.hotel_name,
+        r.review_text,
+        r.review_rating,
+        r.review_date
+    FROM hotels h
+    JOIN hotel_reviews r ON h.hotel_id = r.hotel_id
+    JOIN cities c ON h.city_id = c.city_id
+    WHERE c.city_name = 'Addis Ababa' AND h.hotel_name = 'Hilton Hotel'
+    ORDER BY r.review_date DESC;
+    ";
+    
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<p> Review: " . $row["review_text"] . "</p>";
+            echo "<p>Rating: " . $row["review_rating"] . " / 5.0</p>";
+            echo "<p>Review Date: " . $row["review_date"] . "</p>";
+            echo "<hr>";
+            echo "<br/>";
+
+        }
+    } else {
+        echo "No reviews found.";
+    }
+    ?>
+
 
         <div class="visit-hotel">
           <a
@@ -159,7 +197,35 @@
         </div>
         <button type="submit">Submit Review</button>
     </form>
+    <?php
+    $sql = "
+    SELECT
+        h.hotel_name,
+        r.review_text,
+        r.review_rating,
+        r.review_date
+    FROM hotels h
+    JOIN hotel_reviews r ON h.hotel_id = r.hotel_id
+    JOIN cities c ON h.city_id = c.city_id
+    WHERE c.city_name = 'Addis Ababa' AND h.hotel_name = 'Sherton Hotel'
+    ORDER BY r.review_date DESC;
+    ";
+    
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<p> Review: " . $row["review_text"] . "</p>";
+            echo "<p>Rating: " . $row["review_rating"] . " / 5.0</p>";
+            echo "<p>Review Date: " . $row["review_date"] . "</p>";
+            echo "<hr>";
+            echo "<br/>";
 
+        }
+    } else {
+        echo "No reviews found.";
+    }
+    ?>
         <div class="visit-hotel">
   
             <a
@@ -234,7 +300,35 @@
         </div>
         <button type="submit">Submit Review</button>
     </form>
+    <?php
+    $sql = "
+    SELECT
+        h.hotel_name,
+        r.review_text,
+        r.review_rating,
+        r.review_date
+    FROM hotels h
+    JOIN hotel_reviews r ON h.hotel_id = r.hotel_id
+    JOIN cities c ON h.city_id = c.city_id
+    WHERE c.city_name = 'Addis Ababa' AND h.hotel_name = 'Hyatt Regency'
+    ORDER BY r.review_date DESC;
+    ";
+    
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<p> Review: " . $row["review_text"] . "</p>";
+            echo "<p>Rating: " . $row["review_rating"] . " / 5.0</p>";
+            echo "<p>Review Date: " . $row["review_date"] . "</p>";
+            echo "<hr>";
+            echo "<br/>";
 
+        }
+    } else {
+        echo "No reviews found.";
+    }
+    ?>
         <div class="visit-hotel">
           <a
             href="https://www.hyatt.com/en-US/hotel/ethiopia/hyatt-regency-addis-ababa/addra"
@@ -260,7 +354,7 @@
   padding-top:2px;
   align-content: center;
  }
-   a{
+ a{
   text-decoration: none;
   color: #2d1e18;
 }
@@ -270,6 +364,11 @@
 .review-textarea{
   padding: 2px;
   margin-top: 4px;
+}
+.review{
+  padding: 2px;
+  background: white;
+  color: #2d1e18;
 }
 .rating {
             display: flex;
@@ -299,12 +398,7 @@
 }
 </style>
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "27302223Leah*";
-$dbname = "travel";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve form data
@@ -332,29 +426,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $stmt->close();
 }
-$sql = "
-SELECT
-    h.hotel_name,
-    r.review_text,
-    r.review_rating,
-    r.review_date
-FROM hotels h
-JOIN hotel_reviews r ON h.hotel_id = r.hotel_id
-JOIN cities c ON h.city_id = c.city_id
-WHERE c.city_name = 'Addis Ababa' AND h.hotel_name = 'Hilton Hotel'
-ORDER BY r.review_date DESC;
-";
 
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "<p>" . $row["review_text"] . "</p>";
-        echo "<p>Rating: " . $row["review_rating"] . " / 5.0</p>";
-        echo "<p>Review Date: " . $row["review_date"] . "</p>";
-        echo "<hr>";
-    }
-} else {
-    echo "No reviews found.";
-}
 ?>

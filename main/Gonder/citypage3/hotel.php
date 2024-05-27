@@ -1,3 +1,11 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "27302223Leah*";
+$dbname = "travel";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +96,35 @@
         </div>
         <button type="submit">Submit Review</button>
     </form>
+    <?php
+    $sql = "
+    SELECT
+        h.hotel_name,
+        r.review_text,
+        r.review_rating,
+        r.review_date
+    FROM hotels h
+    JOIN hotel_reviews r ON h.hotel_id = r.hotel_id
+    JOIN cities c ON h.city_id = c.city_id
+    WHERE c.city_name = 'Gonder' AND h.hotel_name = 'Goha Lodge'
+    ORDER BY r.review_date DESC;
+    ";
+    
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<p> Review: " . $row["review_text"] . "</p>";
+            echo "<p>Rating: " . $row["review_rating"] . " / 5.0</p>";
+            echo "<p>Review Date: " . $row["review_date"] . "</p>";
+            echo "<hr>";
+            echo "<br/>";
 
+        }
+    } else {
+        echo "No reviews found.";
+    }
+    ?>
       
       <div class="visit-hotel">
         <a
@@ -146,7 +182,35 @@
         </div>
         <button type="submit">Submit Review</button>
     </form>
+    <?php
+    $sql = "
+    SELECT
+        h.hotel_name,
+        r.review_text,
+        r.review_rating,
+        r.review_date
+    FROM hotels h
+    JOIN hotel_reviews r ON h.hotel_id = r.hotel_id
+    JOIN cities c ON h.city_id = c.city_id
+    WHERE c.city_name = 'Gonder' AND h.hotel_name = 'AG Hotel Gonder'
+    ORDER BY r.review_date DESC;
+    ";
+    
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<p> Review: " . $row["review_text"] . "</p>";
+            echo "<p>Rating: " . $row["review_rating"] . " / 5.0</p>";
+            echo "<p>Review Date: " . $row["review_date"] . "</p>";
+            echo "<hr>";
+            echo "<br/>";
 
+        }
+    } else {
+        echo "No reviews found.";
+    }
+    ?>
           
           <div class="visit-hotel">
             <a
@@ -205,7 +269,35 @@
         <button type="submit">Submit Review</button>
     </form>
 
-              
+    <?php
+    $sql = "
+    SELECT
+        h.hotel_name,
+        r.review_text,
+        r.review_rating,
+        r.review_date
+    FROM hotels h
+    JOIN hotel_reviews r ON h.hotel_id = r.hotel_id
+    JOIN cities c ON h.city_id = c.city_id
+    WHERE c.city_name = 'Gonder' AND h.hotel_name = 'Florida International Hotel'
+    ORDER BY r.review_date DESC;
+    ";
+    
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<p> Review: " . $row["review_text"] . "</p>";
+            echo "<p>Rating: " . $row["review_rating"] . " / 5.0</p>";
+            echo "<p>Review Date: " . $row["review_date"] . "</p>";
+            echo "<hr>";
+            echo "<br/>";
+
+        }
+    } else {
+        echo "No reviews found.";
+    }
+    ?>         
               <div class="visit-hotel">
                 <a
             href="../Hotels/reservation.php"

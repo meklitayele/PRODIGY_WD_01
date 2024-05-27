@@ -1,3 +1,11 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "27302223Leah*";
+$dbname = "travel";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -96,7 +104,35 @@
         </div>
         <button type="submit">Submit Review</button>
     </form>
+    <?php
+    $sql = "
+    SELECT
+        h.hotel_name,
+        r.review_text,
+        r.review_rating,
+        r.review_date
+    FROM hotels h
+    JOIN hotel_reviews r ON h.hotel_id = r.hotel_id
+    JOIN cities c ON h.city_id = c.city_id
+    WHERE c.city_name = 'Jimma' AND h.hotel_name = 'Central Jimma Hotel'
+    ORDER BY r.review_date DESC;
+    ";
+    
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<p> Review: " . $row["review_text"] . "</p>";
+            echo "<p>Rating: " . $row["review_rating"] . " / 5.0</p>";
+            echo "<p>Review Date: " . $row["review_date"] . "</p>";
+            echo "<hr>";
+            echo "<br/>";
 
+        }
+    } else {
+        echo "No reviews found.";
+    }
+    ?>
         <div class="visit-hotel">
          
           <a
@@ -163,7 +199,35 @@
         </div>
         <button type="submit">Submit Review</button>
     </form>
+    <?php
+    $sql = "
+    SELECT
+        h.hotel_name,
+        r.review_text,
+        r.review_rating,
+        r.review_date
+    FROM hotels h
+    JOIN hotel_reviews r ON h.hotel_id = r.hotel_id
+    JOIN cities c ON h.city_id = c.city_id
+    WHERE c.city_name = 'Jimma' AND h.hotel_name = 'Awetu Hotel'
+    ORDER BY r.review_date DESC;
+    ";
+    
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<p> Review: " . $row["review_text"] . "</p>";
+            echo "<p>Rating: " . $row["review_rating"] . " / 5.0</p>";
+            echo "<p>Review Date: " . $row["review_date"] . "</p>";
+            echo "<hr>";
+            echo "<br/>";
 
+        }
+    } else {
+        echo "No reviews found.";
+    }
+    ?>
         <div class="visit-hotel">
           <a
             href="../Hotels/reservation.php"
@@ -229,7 +293,35 @@
         </div>
         <button type="submit">Submit Review</button>
     </form>
+    <?php
+    $sql = "
+    SELECT
+        h.hotel_name,
+        r.review_text,
+        r.review_rating,
+        r.review_date
+    FROM hotels h
+    JOIN hotel_reviews r ON h.hotel_id = r.hotel_id
+    JOIN cities c ON h.city_id = c.city_id
+    WHERE c.city_name = 'Jimma' AND h.hotel_name = 'Central Jimma Hotels'
+    ORDER BY r.review_date DESC;
+    ";
+    
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<p> Review: " . $row["review_text"] . "</p>";
+            echo "<p>Rating: " . $row["review_rating"] . " / 5.0</p>";
+            echo "<p>Review Date: " . $row["review_date"] . "</p>";
+            echo "<hr>";
+            echo "<br/>";
 
+        }
+    } else {
+        echo "No reviews found.";
+    }
+    ?>
         <div class="visit-hotel">
           <a
             href="../Hotels/reservation.php"
@@ -252,6 +344,31 @@
   text-decoration: none;
   color: #2d1e18;
 }
+.rating {
+            display: flex;
+            flex-direction: row-reverse;
+            unicode-bidi: bidi-override;
+            direction: rtl;
+        }
+        .rating > input {
+            display: none;
+        }
+        .rating > label {
+            display: inline-block;
+            font-size: .9rem;            
+            cursor: pointer;
+            color: #ccc;
+        }
+        .rating > label:before {
+            content: "★";
+            color: #ccc;
+        }
+        .rating > input:checked ~ label:before,
+        .rating > input:checked ~ label ~ label:before {
+            color: #fc0;
+        } .hidden{
+    display: none;
+  }
 .rating-label{
   color: #2d1e18;
 }
