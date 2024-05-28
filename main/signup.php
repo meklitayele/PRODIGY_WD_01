@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $username = "root";
-$password = "27302223Leah*";
+$password = "";
 $database = "travel";
 $errors = array();
 
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button class="btn" type="submit">Sign up</button>
         </form>
         <div class="login">
-            <h3>Already have an account?<a href="login.html">Login</a></h3>
+            <h3>Already have an account?<a href="login.php">Login</a></h3>
         </div>
         <!-- <?php if(isset($error)) echo '<div class="error">'.$error.'</div>'; ?> -->
 </div>

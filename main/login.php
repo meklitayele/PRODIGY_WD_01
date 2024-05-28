@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $username = "root";
-$password = "27302223Leah*";
+$password = "";
 $database = "travel";
 
 $conn = new mysqli($host, $username, $password, $database);
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows == 1) {
         session_start();
         $_SESSION["username"] = $usernameOrEmail;
-        header("Location: signup.php");
+        header("Location: homepage.html");
         exit();
     } else {
         $error = "Invalid username/email or password";
@@ -64,37 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" name="username_or_email" placeholder="Username or Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <?php if(isset($error)) echo '<div class="error">'.$error.'</div>'; ?>
-            <button class="btn" type="submit">Login</button>
+            <input type="submit" value="Login" class="btn"/>
         </form>
         <div class="signup">
-            <h3>Don't have an account?<a href="signup.html">Signup</a></h3>
+            <h3>Don't have an account?<a href="signup.php">Signup</a></h3>
         </div>
   
   </body>
-  <footer>
-    <div class="footerContainer">
-      <div class="socialIcons">
-        <a href=""> <i class="fa-brands fa-facebook"></i></a>
-        <a href=""> <i class="fa-brands fa-instagram"></i></a>
-        <a href=""> <i class="fa-brands fa-twitter"></i></a>
-        <a href=""> <i class="fa-brands fa-google-plus"></i></a>
-        <a href=""> <i class="fa-brands fa-youtube"></i></a>
-      </div>
-      <div class="footerNav">
-        <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="">About</a></li>
-          <li><a href="">Contact Us</a></li>
-          <li><a href="">Our Team</a></li>
-          <li><a href="">Privacy Policy</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footerBottom">
-      <p>
-        Copyright &copy; 2024; Designed by
-        <span class="designer">YeKolo Coders</span>
-      </p>
-    </div>
-  </footer>
+ 
 </html>
