@@ -4,7 +4,7 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -18,181 +18,266 @@ session_start();
     />
     <link rel="stylesheet" href="../css/yy.css" />
     <script src="../script/links.js"></script>
-</head>
-<body>
+  </head>
+  <body>
 
-<?php
-$hostname = 'localhost';
-$port = 3307;
-$username = 'hotel';
-$password = '1234';
-$database = 'hotel_db';
 
-$showForm = true; // Flag to control the visibility of the form
 
-if (isset($_GET['city'])) {
-    // Retrieve the city from the form input
-    $city = $_GET['city'];
+  <?php
+    $hostname = 'localhost';
+    $port = 3307;
+    $username = 'hotel';
+    $password = '1234';
+    $database = 'hotel_db';
 
-    // Establish a connection
-    $conn = mysqli_connect($hostname, $username, $password, $database, $port);
+    $showForm = true; // Flag to control the visibility of the form
 
-    // Check if it is connected
-    if (!$conn) {
-        echo 'Failed to connect to the database: ' . mysqli_connect_error();
-    }
+    if (isset($_GET['city'])) {
+        // Retrieve the city from the form input
+        $city = $_GET['city'];
 
-    // Prepare and execute the SELECT query with a JOIN
-    $city = '%' . $city . '%';
-    $query = "SELECT hotel.*, city.CityName 
-              FROM hotel 
-              INNER JOIN city ON hotel.CityID = city.CityID 
-              WHERE city.CityName LIKE '$city'";
+        // Establish a database connection code from previous step
 
-    $result = mysqli_query($conn, $query);
+        // Establish a connection
+        $conn = mysqli_connect($hostname, $username, $password, $database, $port);
 
-    // Process the query result
-    if ($result) {
-        if (mysqli_num_rows($result) > 0) {
-            $showForm = false; 
-
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "Hotel ID: " . $row['Hotel ID'] . "<br>";
-                echo "Hotel Name: " . $row['HotelName'] . "<br>";
-                echo "Hotel Address: " . $row['HotelAddress'] . "<br>";
-                echo "Contact Number: " . $row['ContactNumber'] . "<br>";
-                echo "Email Address: " . $row['EmailAddress'] . "<br>";
-                echo "City: " . $row['CityName'] . "<br>";
-                echo "<hr>";
-            }
-        } else {
-            echo "No hotels found in the specified city.";
+        // Check if it is connected
+        if (!$conn) {
+            echo 'Failed to connect to the database: ' . mysqli_connect_error();
         }
 
-        mysqli_free_result($result);
-    } else {
-        echo "Query execution failed: " . mysqli_error($conn);
+        // Prepare and execute the SELECT query with a JOIN
+        $city = '%' . $city . '%';
+        $query = "SELECT hotel.*, city.CityName 
+                  FROM hotel 
+                  INNER JOIN city ON hotel.CityID = city.CityID 
+                  WHERE city.CityName LIKE '$city'";
+
+        $result = mysqli_query($conn, $query);
+
+        // Process the query result
+        if ($result) {
+            if (mysqli_num_rows($result) > 0) {
+                $showForm = false; 
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "Hotel ID: " . $row['Hotel ID'] . "<br>";
+                    echo "Hotel Name: " . $row['HotelName'] . "<br>";
+                    echo "Hotel Address: " . $row['HotelAddress'] . "<br>";
+                    echo "Contact Number: " . $row['ContactNumber'] . "<br>";
+                    echo "Email Address: " . $row['EmailAddress'] . "<br>";
+                    echo "City: " . $row['CityName'] . "<br>";
+                    echo "<hr>";
+                }
+            } else {
+                echo "No hotels found in the specified city.";
+            }
+
+            mysqli_free_result($result);
+        } else {
+            echo "Query execution failed: " . mysqli_error($conn);
+        }
+
+        mysqli_close($conn);
     }
+    ?>
+    
+    <header class="main-header">
+      <div class="header-wrapper">
+        <div class="main-logo">
+          <img
+            class="logo"
+            src="../images/logo-transparent-png.png"
+            alt="LOGO"
+          />
+        </div>
 
-    mysqli_close($conn);
-}
-?>
-
-<header class="main-header">
-  <div class="header-wrapper">
-    <div class="main-logo">
-      <img class="logo" src="../images/logo-transparent-png.png" alt="LOGO"/>
-    </div>
-
-    <nav>
-        <ul class="main-menu">
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#destination">DESTINATIONS</a></li>
-            <li><a href="#eth">ETHIOPIA</a></li>
-            <?php if (!empty($_SESSION['username'])): ?>
-               <li><a href="logout.php" class="signin">Logout</a></li>
-            <?php else: ?>
-                <li><a onclick="goToPage('login.php')" class="signin">LOG IN</a></li>
-            <?php endif; ?>
-        </ul>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <div class="Part-1">
-    <img src="../images/po3.png" alt="" id="BackVideo" />
-
-    <?php if ($showForm): ?>
-    <div class="search-city-container">
-        <form id="searchForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
-            <input type="text" name="city" placeholder="Enter a city" required class="search-city-input">
-            <button type="submit" class="search-city-button">Search</button>
-        </form>
-    </div>
-    <?php endif; ?>
-  </div>
-
-  <div class="Part-2" id="ethiopia">
-    <div class="aboutEth">
-      <img class="collage" src="../images/collage (2).png" alt="collage-image-of-ethiopia"/>
-    </div>
-    <div class="description">
-      <h2 class="text" id="eth">WELCOME TO ETHIOPIA</h2>
-      Ethiopia, is a captivating destination that offers a unique blend of historical wonders, vibrant culture, and breathtaking landscapes. Immerse yourself in the country's rich history by exploring UNESCO World Heritage Sites like the awe-inspiring rock-hewn churches of Lalibela and the ancient city of Axum with its towering obelisks. Witness stunning natural beauty in the Simien Mountains and the Danakil Depression, and encounter rare wildlife and endemic species. Engage with local communities, savor the flavors of Ethiopian cuisine, and experience warm hospitality. Whether you seek ancient civilizations, diverse cultures, or thrilling outdoor adventures, Ethiopia promises an unforgettable journey.
-    </div>
-  </div>
-
-  <div class="Part-3">
-    <h2 class="city" id="destination">DESTINATIONS</h2>
-
-    <div class="container">
-      <img onclick="goToPage('page2.html')" class="city-links" id="box1" src="../images/afar.jpg" alt="YE-KOLO-CODERS"/>
-
-      <div class="hoverwrap">
-        <img onclick="goToPage('JIMMA/index.html')" class="city-links" id="box2" src="../images/jimma.jpg" alt="YE-KOLO-CODERS"/>
-        <div class="hovercap">JIMMA</div>
+        <nav>
+            <ul class="main-menu">
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#destination">DESTINATIONS</a></li>
+                <li><a href="#eth">ETHIOPIA</a></li>
+                <?php if (!empty($_SESSION['username'])): ?>
+                  <li>
+                    <form id="searchForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET" style="display: inline;">
+                      <input type="text" name="city" placeholder="Enter a city" required>
+                      <button type="submit" class="search-button">Search</button>
+                    </form>
+                    <script>
+                    function performSearch() {
+                        document.getElementById("searchForm").submit();
+                    }
+                </script>
+                  </li>
+                   <li>
+                        <a href="logout.php" class="signin">Logout</a>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <a href="login.php" class="signin">LOG IN</a>
+                    </li>
+                <?php endif; ?>
+                            
+               
+            </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="Part-1">
+        <img src="../images/po3.png" alt="" id="BackVideo" />
+      </div>
+     
+      <div class="Part-2" id="ethiopia">
+        <div class="aboutEth">
+          <img
+            class="collage"
+            src="../images/collage (2).png"
+            alt="collage-image-of-ethiopia"
+          />
+        </div>
+        <div class="description">
+          <h2 class="text" id="eth">WELCOME TO ETHIOPIA</h2>
+          Ethiopia, is a captivating destination that offers a unique blend of
+          historical wonders, vibrant culture, and breathtaking landscapes.
+          Immerse yourself in the country's rich history by exploring UNESCO
+          World Heritage Sites like the awe-inspiring rock-hewn churches of
+          Lalibela and the ancient city of Axum with its towering obelisks.
+          Witness stunning natural beauty in the Simien Mountains and the
+          Danakil Depression, and encounter rare wildlife and endemic species.
+          Engage with local communities, savor the flavors of Ethiopian cuisine,
+          and experience warm hospitality. Whether you seek ancient
+          civilizations, diverse cultures, or thrilling outdoor adventures,
+          Ethiopia promises an unforgettable journey.
+        </div>
       </div>
 
-      <div class="hoverwrap">
-        <img onclick="goToPage('Gonder/citypage3/index.html')" class="city-links" id="box3" src="../images/gondar.jpg" alt="YE-KOLO-CODERS"/>
-        <div class="hovercap">GONDER</div>
+      <div class="Part-3">
+        <h2 class="city" id="destination">POPULAR DESTINATIONS</h2>
+        <div class="container">
+          <span class="material-symbols-outlined" id="left">
+            arrow_back_ios
+          </span>
+          <div class="hoverwrap">
+            <a href="#" class="pages">
+              <img
+                class="city-links"
+                id="box1"
+                name="afar"
+                src="../images/afar.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
+            <div class="hovercap">Afar</div>
+          </div>
+
+          <div class="hoverwrap">
+            <a href="JIMMA/index.html" class="pages">
+              <img
+                name="jimma"
+                class="city-links"
+                id="box2"
+                src="../images/jimma.jpg"
+                alt="YE-KOLO-CODERS"
+              />
+            </a>
+            <div class="hovercap">JIMMA</div>
+          </div>
+
+          <div class="hoverwrap">
+            <a href="Gonder/citypage3/index.html" class="pages"
+              ><img
+                name="gondar"
+                class="city-links"
+                id="box3"
+                src="../images/gondar.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
+
+            <div class="hovercap">GONDER</div>
+          </div>
+
+          <div class="hoverwrap">
+            <a href="ADDIS/index.html" class="pages"
+              ><img
+                name="addis"
+                id="box4"
+                class="city-links"
+                src="../images/addis.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
+            <div class="hovercap">ADDIS ABABA</div>
+          </div>
+
+          <div class="hoverwrap">
+            <a href="LALIBELA/index.html" class="pages"
+              ><img
+                name="lalibela"
+                id="box3"
+                class="city-links"
+                src="../images/harar.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
+            <div class="hovercap">LALIBELA</div>
+          </div>
+
+          <div class="hoverwrap">
+            <a href="ARBAMINCH/index.html" class="pages">
+              <img
+                name="arbaminch"
+                class="city-links"
+                id="box2"
+                src="../images/hawassa.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
+            <div class="hovercap">ARBAMINCH</div>
+          </div>
+
+          <div class="hoverwrap">
+            <a href="#" class="pages">
+              <img
+                name="axum"
+                class="city-links"
+                id="box1"
+                src="../images/axsum.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
+            <div class="hovercap">AXSUM</div>
+          </div>
+          <span class="material-symbols-outlined" id="right">
+          </span>
+        </div>
       </div>
+      <div class="Part-4"></div>
+    </main>
+    <footer id="about">
+      <div class="footerContainer">
+        <div class="socialIcons">
+          <a href=""> <i class="fa-brands fa-facebook"></i></a>
+          <a href=""> <i class="fa-brands fa-instagram"></i></a>
+          <a href=""> <i class="fa-brands fa-twitter"></i></a>
+          <a href=""> <i class="fa-brands fa-google-plus"></i></a>
+          <a href=""> <i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="footerNav">
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="">Our Team</a></li>
+            <li><a href="">Privacy Policy</a></li>
+          </ul>
+        </div>
 
-      <div class="hoverwrap">
-        <img onclick="goToPage('ADDIS/index.html')" id="box4" class="city-links" src="../images/addis.jpg" alt="YE-KOLO-CODERS"/>
-        <div class="hovercap">ADDIS ABABA</div>
+        <div class="footerBottom">
+          <p>
+            Copyright &copy; 2024 Designed by
+            <span class="designer">YeKolo Coders</span>
+          </p>
+        </div>
       </div>
-
-      <div class="hoverwrap">
-        <img onclick="goToPage('LALIBELA/index.html')" id="box3" class="city-links" src="../images/harar.jpg" alt="YE-KOLO-CODERS"/>
-        <div class="hovercap">LALIBELA</div>
-      </div>
-
-      <div class="hoverwrap">
-        <img onclick="goToPage('ARBAMINCH/index.html')" class="city-links" id="box2" src="../images/hawassa.jpg" alt="YE-KOLO-CODERS"/>
-        <div class="hovercap">ARBAMINCH</div>
-      </div>
-
-      <div class="hoverwrap">
-        <img class="city-links" id="box1" src="../images/axsum.jpg" alt="YE-KOLO-CODERS"/>
-        <div class="hovercap">AXSUM</div>
-      </div>
-    </div>
-
-    <p class="city2">
-      "Explore a world of possibilities and select your dream destination for your next adventure. Whether you're planning a relaxing getaway, an exciting city exploration, a breathtaking mountain retreat, or an immersive cultural immersion we've got you covered."
-    </p>
-  </div>
-  <div class="Part-4"></div>
-</main>
-
-<footer id="about">
-  <div class="footerContainer">
-    <div class="socialIcons">
-      <a href=""><i class="fa-brands fa-facebook"></i></a>
-      <a href=""><i class="fa-brands fa-instagram"></i></a>
-      <a href=""><i class="fa-brands fa-twitter"></i></a>
-      <a href=""><i class="fa-brands fa-google-plus"></i></a>
-      <a href=""><i class="fa-brands fa-youtube"></i></a>
-    </div>
-    <div class="footerNav">
-      <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="">About</a></li>
-        <li><a href="">Contact Us</a></li>
-        <li><a href="">Our Team</a></li>
-        <li><a href="">Privacy Policy</a></li>
-      </ul>
-    </div>
-
-    <div class="footerBottom">
-      <p>
-        Copyright &copy; 2024 Designed by
-        <span class="designer">YeKolo Coders</span>
-      </p>
-    </div>
-  </div>
-</footer>
-</body>
+    </footer>
+    
+ 
+ 
+  </body>
 </html>
