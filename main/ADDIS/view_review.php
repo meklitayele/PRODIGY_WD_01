@@ -54,3 +54,36 @@ $hotel_name = isset($_GET['hotel_name']) ? $conn->real_escape_string($_GET['hote
 </body>
 
 </html>
+
+<?php
+if ($hotel_name) {
+    $sql = "
+                SELECT
+                    h.hotel_name,
+                    r.review_text,
+                    r.review_rating,
+                    r.review_date
+                FROM hotels h
+                JOIN hotel_reviews r ON h.hotel_id = r.hotel_id
+                JOIN cities c ON h.city_id = c.city_id
+                WHERE c.city_name = 'Addis Ababa' AND h.hotel_name = '$hotel_name'
+                ORDER BY r.review_date DESC;
+                ";
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<p>Review: " . $row["review_text"] . "</p>";
+            echo "<p>Rating: " . $row["review_rating"] . " / 5.0</p>";
+            echo "<p>Review Date: " . $row["review_date"] . "</p>";
+            echo "<hr>";
+        }
+    } else {
+        echo "<p>No reviews found for $hotel_name.</p>";
+    }
+} else {
+    echo "<p>No hotel specified.</p>";
+}
+$conn->close();
+?>
