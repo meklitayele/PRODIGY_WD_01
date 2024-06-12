@@ -1,3 +1,18 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "travel2";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$hotel_name = isset($_GET['hotel_name']) ? $conn->real_escape_string($_GET['hotel_name']) : '';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
