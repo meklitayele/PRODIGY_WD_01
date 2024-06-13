@@ -1,8 +1,10 @@
 .logo {
     height: 75px;
-    width: 210px;
+    width: 100px;
     display: inline;
 }
+
+
 
 .main-header {
     position: absolute;
@@ -16,7 +18,7 @@
 
     .header-wrapper {
         display: block;
-        width: 70%;
+        width: 80%;
         margin: 0 auto;
         padding-top: 1em;
 
@@ -69,6 +71,12 @@
     }
 }
 
+.user-circle {
+    padding: 10px 10px;
+    background-color: rgb(147, 118, 82);
+   
+}
+
 
 .signin {
     padding: 12px 17px;
@@ -80,12 +88,49 @@
 }
 
 
-
+/* Corrected CSS */
 .Part-1 {
     position: relative;
     padding: 500px 100px;
     padding-top: 200px;
+}
 
+.search-city-container {
+    background-color: rgba(255, 255, 255, 0.5); /* Transparent white background */
+    padding: 20px;
+    position: fixed;
+    top: 50%; /* Place it in the middle vertically */
+    left: 50%; /* Place it in the middle horizontally */
+    transform: translate(-50%, -50%);
+    z-index: 999; /* Ensure it's on top of other content */
+    border-radius: 10px;
+}
+
+.search-city-input {
+    width: 300px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    margin-right: 10px;
+}
+
+.search-city-button {
+    width: 100px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    border: none;
+    outline: none;
+    background-color: #007bff; /* Blue color */
+    color: #fff; /* White color */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+.search-city-button:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
 }
 
 #BackVideo {
@@ -99,11 +144,8 @@
 }
 
 .search {
-
     position: relative;
     z-index: -1;
-
-
 }
 
 
@@ -139,6 +181,8 @@
 
 }
 
+
+
 .description {
     font-size: 17.6px;
 font-family: "Vollkorn", serif;
@@ -161,7 +205,7 @@ font-family: "Vollkorn", serif;
 }
 
 .Part-3 {
-    background-color: #361500;
+    background-color: #180b02;
     padding: 30px 80px;
 
 }

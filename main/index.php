@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -77,11 +81,7 @@
         mysqli_close($conn);
     }
     ?>
-
     
-
-
-
     <header class="main-header">
       <div class="header-wrapper">
         <div class="main-logo">
@@ -93,33 +93,41 @@
         </div>
 
         <nav>
-          <ul class="main-menu">
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#destination">DESTINATIONS</a></li>
-            <li><a href="#eth">ETHIOPIA</a></li>
-            <li>
-              <a onclick="goToPage('login.html')" class="signin">LOG IN</a>
-              
-              <form id="searchForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET" style="display: inline;">
-                <input type="text" name="city" placeholder="Enter a city" required>
-                <button type="submit" class="search-button">Search</button>
-              </form>
-            
-                <script>
+            <ul class="main-menu">
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#destination">DESTINATIONS</a></li>
+                <li><a href="#eth">ETHIOPIA</a></li>
+                <?php if (!empty($_SESSION['username'])): ?>
+                  <li>
+                    <form id="searchForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET" style="display: inline;">
+                      <input type="text" name="city" placeholder="Enter a city" required>
+                      <button type="submit" class="search-button">Search</button>
+                    </form>
+                    <script>
                     function performSearch() {
                         document.getElementById("searchForm").submit();
                     }
                 </script>
-            </li>
-          </ul>
+                  </li>
+                   <li>
+                        <a href="logout.php" class="signin">Logout</a>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <a href="login.php" class="signin">LOG IN</a>
+                    </li>
+                <?php endif; ?>
+                            
+               
+            </ul>
         </nav>
       </div>
     </header>
-
     <main>
       <div class="Part-1">
         <img src="../images/po3.png" alt="" id="BackVideo" />
       </div>
+     
       <div class="Part-2" id="ethiopia">
         <div class="aboutEth">
           <img
@@ -145,90 +153,99 @@
       </div>
 
       <div class="Part-3">
-        <h2 class="city" id="destination">DESTINATIONS</h2>
-
+        <h2 class="city" id="destination">POPULAR DESTINATIONS</h2>
         <div class="container">
-          <img
-            onclick="goToPage('page2.html')"
-            class="city-links"
-            id="box1"
-            src="../images/afar.jpg"
-            alt="YE-KOLO-CODERS"
-          />
+          <span class="material-symbols-outlined" id="left">
+            arrow_back_ios
+          </span>
+          <div class="hoverwrap">
+            <a href="#" class="pages">
+              <img
+                class="city-links"
+                id="box1"
+                name="afar"
+                src="../images/afar.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
+            <div class="hovercap">Afar</div>
+          </div>
 
           <div class="hoverwrap">
-            <img
-              onclick="goToPage('JIMMA/index.html')"
-              class="city-links"
-              id="box2"
-              src="../images/jimma.jpg"
-              alt="YE-KOLO-CODERS"
-            />
-
+            <a href="JIMMA/index.html" class="pages">
+              <img
+                name="jimma"
+                class="city-links"
+                id="box2"
+                src="../images/jimma.jpg"
+                alt="YE-KOLO-CODERS"
+              />
+            </a>
             <div class="hovercap">JIMMA</div>
           </div>
 
           <div class="hoverwrap">
-            <img
-              onclick="goToPage('Gonder/citypage3/index.html')"
-              class="city-links"
-              id="box3"
-              src="../images/gondar.jpg"
-              alt="YE-KOLO-CODERS"
-            />
+            <a href="Gonder/citypage3/index.html" class="pages"
+              ><img
+                name="gondar"
+                class="city-links"
+                id="box3"
+                src="../images/gondar.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
+
             <div class="hovercap">GONDER</div>
           </div>
 
           <div class="hoverwrap">
-            <img
-              onclick="goToPage('ADDIS/index.html')"
-              id="box4"
-              class="city-links"
-              src="../images/addis.jpg"
-              alt="YE-KOLO-CODERS"
-            />
+            <a href="ADDIS/index.html" class="pages"
+              ><img
+                name="addis"
+                id="box4"
+                class="city-links"
+                src="../images/addis.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
             <div class="hovercap">ADDIS ABABA</div>
           </div>
 
           <div class="hoverwrap">
-            <img
-              onclick="goToPage('LALIBELA/index.html')"
-              id="box3"
-              class="city-links"
-              src="../images/harar.jpg"
-              alt="YE-KOLO-CODERS"
-            />
+            <a href="LALIBELA/index.html" class="pages"
+              ><img
+                name="lalibela"
+                id="box3"
+                class="city-links"
+                src="../images/harar.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
             <div class="hovercap">LALIBELA</div>
           </div>
 
           <div class="hoverwrap">
-            <img
-              onclick="goToPage('ARBAMINCH/index.html')"
-              class="city-links"
-              id="box2"
-              src="../images/hawassa.jpg"
-              alt="YE-KOLO-CODERS"
-            />
+            <a href="ARBAMINCH/index.html" class="pages">
+              <img
+                name="arbaminch"
+                class="city-links"
+                id="box2"
+                src="../images/hawassa.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
             <div class="hovercap">ARBAMINCH</div>
           </div>
 
           <div class="hoverwrap">
-            <img
-              class="city-links"
-              id="box1"
-              src="../images/axsum.jpg"
-              alt="YE-KOLO-CODERS"
-            />
+            <a href="#" class="pages">
+              <img
+                name="axum"
+                class="city-links"
+                id="box1"
+                src="../images/axsum.jpg"
+                alt="YE-KOLO-CODERS"
+            /></a>
+            <div class="hovercap">AXSUM</div>
           </div>
-          <div class="hovercap">AXSUM</div>
+          <span class="material-symbols-outlined" id="right">
+          </span>
         </div>
-
-        <p class="city2">
-          "Explore a world of possibilities and select your dream destination
-          for your next adventure. Whether you're planning a relaxing getaway,
-          an exciting city exploration, a breathtaking mountain retreat,or an
-          immersive cultural immersion we've got you covered."
-        </p>
       </div>
       <div class="Part-4"></div>
     </main>

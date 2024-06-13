@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $username = "root";
-$password = "27302223Leah*";
+$password = "";
 $database = "travel";
 $errors = array();
 
@@ -40,21 +40,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     if (count($errors) === 0) {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         
-        $sql = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$hashedPassword')";
+        $sql = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$password')";
         
-        $sql = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$hashedPassword')";
         if ($conn->query($sql) === TRUE) {
             header("Location: login.php");
             $error = "Sign up successful";
             exit();
         } else {
             $error = "Error: " . $sql . "<br>" . $conn->error;
-            $error = "Error: " . $sql . "<br>" . $conn->error;
         }
-
-        $stmt->close();
     }
 }
 ?>
@@ -96,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button class="btn" type="submit">Sign up</button>
         </form>
         <div class="login">
-            <h3>Already have an account?<a href="login.html">Login</a></h3>
+            <h3>Already have an account?<a href="login.php">Login</a></h3>
         </div>
         <!-- <?php if(isset($error)) echo '<div class="error">'.$error.'</div>'; ?> -->
 </div>
