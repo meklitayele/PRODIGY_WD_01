@@ -10,7 +10,7 @@
 
     <link href="./css/font-awesome.css" rel="stylesheet" />
 
-    <link href="./css/styles.css" rel="stylesheet" />
+    <!-- <link href="./css/styles.css" rel="stylesheet" /> -->
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <script>
@@ -259,7 +259,7 @@
 
                     <div class="col-md-12 col-sm-12">
                         <div style="background:cornsilk " class="well">
-                            <input style="width : 100%; height :20%;" type="submit" name="Submit" value="Submit" class="btn btn-primary" />
+                            <input style="width : 20%; height :30%; background:brown; color:#fff;" type="submit" name="Submit" value="Submit"  />
 
 
                             </form>
