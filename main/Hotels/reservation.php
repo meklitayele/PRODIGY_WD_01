@@ -14,10 +14,10 @@
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <script>
-    function showConfirmation() {
-      alert("Form submitted successfully!");
-    }
-  </script>
+        function showConfirmation() {
+            alert("Form submitted successfully!");
+        }
+    </script>
 </head>
 <header>
     <div class="logo">
@@ -71,7 +71,7 @@
                                                     text-decoration: none;
                                                     padding: 10px;
                                                     color: #fff;
-                                                    transition: background-color 0.3s;" href="../ADDIS/hotels2.html">HOTELS</a></li>
+                                                    transition: background-color 0.3s;" href="../ADDIS/hotels2.php">HOTELS</a></li>
                 <li style="list-style: none;
                         text-align: center;
                         flex-grow: 1;"><a style="display: block;
@@ -85,7 +85,7 @@
                                                     text-decoration: none;
                                                     padding: 10px;
                                                     color: #fff;
-                                                    transition: background-color 0.3s;" href="../ADDIS/contact.html">CONTACT</a></li>
+                                                    transition: background-color 0.3s;" href="../ADDIS/contact.php">CONTACT</a></li>
             </ul>
         </div>
     </nav>
@@ -259,7 +259,7 @@
 
                     <div class="col-md-12 col-sm-12">
                         <div style="background:cornsilk " class="well">
-                            <input style="width : 20%; height :30%; background:brown; color:#fff;" type="submit" name="Submit" value="Submit"  />
+                            <input style="width : 100%; height :20%;" type="submit" name="submit" value="Submit" class="btn btn-primary" />
 
 
                             </form>
@@ -281,53 +281,58 @@
 
 
     <?php
-
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
     if (isset($_POST['submit'])) {
-        $con = new mysqli("localhost", "root", "Kacho123+", "hoteldb");
-        if (!$con) {
-            die("Connection failed: " . mysqli_connect_error());
-        } else {
-            echo "connected";
+        $con = new mysqli("localhost", "root", "", "traveldb");
+
+        if ($con->connect_error) {
+            die("Connection failed: " . $con->connect_error);
         }
 
-
-        $title = mysqli_real_escape_string($con, $_POST["title"]);
-        $fname = mysqli_real_escape_string($con, $_POST["fname"]);
-        $lname = mysqli_real_escape_string($con, $_POST["lname"]);
-        $country = mysqli_real_escape_string($con, $_POST["country"]);
-        $nation = mysqli_real_escape_string($con, $_POST["nation"]);
-        $phone = mysqli_real_escape_string($con, $_POST["phone"]);
-        $troom = mysqli_real_escape_string($con, $_POST["troom"]);
-        $bed = mysqli_real_escape_string($con, $_POST["bed"]);
-        $nroom = mysqli_real_escape_string($con, $_POST["nroom"]);
-        $meal = mysqli_real_escape_string($con, $_POST["meal"]);
-        $cin = mysqli_real_escape_string($con, $_POST["cin"]);
-        $cout = mysqli_real_escape_string($con, $_POST["cout"]);
-        $email = mysqli_real_escape_string($con, $_POST['email']);
-        $reserved = mysqli_real_escape_string($con, $_POST['']);
+        $title = $con->real_escape_string($_POST["title"]);
+        $fname = $con->real_escape_string($_POST["fname"]);
+        $lname = $con->real_escape_string($_POST["lname"]);
+        $country = $con->real_escape_string($_POST["country"]);
+        $nation = $con->real_escape_string($_POST["nation"]);
+        $phone = $con->real_escape_string($_POST["phone"]);
+        $troom = $con->real_escape_string($_POST["troom"]);
+        $bed = $con->real_escape_string($_POST["bed"]);
+        $nroom = $con->real_escape_string($_POST["nroom"]);
+        $meal = $con->real_escape_string($_POST["meal"]);
+        $cin = $con->real_escape_string($_POST["cin"]);
+        $cout = $con->real_escape_string($_POST["cout"]);
+        $email = $con->real_escape_string($_POST['email']);
 
         $checkQuery = "SELECT COUNT(*) FROM roombook WHERE email = '$email'";
-        $checkResult = mysqli_query($con, $checkQuery);
-        $data = mysqli_fetch_array($checkResult)[0];
-        if ($data > 1) {
-            echo "<script type='text/javascript'> alert('User Already Exists')</script>";
-        } else {
-            $new = "Not Conform";
-            $nodays = floor((strtotime($cout) - strtotime($cin)) / (60 * 60 * 24));
+        $checkResult = $con->query($checkQuery);
 
-            $newUserQuery = "INSERT INTO roombook (Title, FName, LName, Email, National, Country, Phone, TRoom, Bed, NRoom, Meal, cin, cout, stat, nodays) 
+        if ($checkResult) {
+            $data = $checkResult->fetch_array()[0];
+            if ($data > 0) { // Change to > 0 as 1 user can have 1 booking
+                echo "<script type='text/javascript'> alert('User Already Exists')</script>";
+            } else {
+                $new = "Not Conform";
+                $nodays = floor((strtotime($cout) - strtotime($cin)) / (60 * 60 * 24));
+
+                $newUserQuery = "INSERT INTO roombook (Title, FName, LName, Email, National, Country, Phone, TRoom, Bed, NRoom, Meal, cin, cout, stat, nodays) 
                          VALUES ('$title', '$fname', '$lname', '$email', '$nation', '$country', '$phone', '$troom', '$bed', '$nroom', '$meal', '$cin', '$cout', '$new', '$nodays')";
 
-            if (mysqli_query($con, $newUserQuery)) {
-                echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
-            } else {
-                echo "<script type='text/javascript'> alert('Error adding user to the database')</script>";
+                if ($con->query($newUserQuery) === TRUE) {
+                    echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
+                } else {
+                    echo "<script type='text/javascript'> alert('Error adding user to the database')</script>";
+                }
             }
+        } else {
+            echo "<script type='text/javascript'> alert('Error checking user in the database')</script>";
         }
 
-        mysqli_close($con);
+        $con->close();
     }
+    ?>
+
 
 
     ?>

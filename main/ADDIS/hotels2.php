@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "travel2";
+$dbname = "traveldb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 ?>
@@ -79,7 +79,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
     <div class="under">
       <h3>Leave a Review</h3>
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <input class="hidden" name="hotel_id" value="1">
+        <input class="hidden" name="hotel_id" value="2">
         <div>
           <label for="review_text">Review:</label>
           <textarea name="review_text" id="review_text" rows="5\" required></textarea>
@@ -144,7 +144,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
       <h3>Leave a Review</h3>
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <input class="hidden" name="hotel_id" value="2">
+        <input class="hidden" name="hotel_id" value="1">
         <div>
           <label for="review_text">Review:</label>
           <textarea name="review_text" id="review_text" rows="5"></textarea>
@@ -316,17 +316,17 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Retrieve form data
+
   $hotel_id = (int) $_POST["hotel_id"];
   $review_text = $_POST["review_text"];
   if (isset($_POST["review_rating"])) {
     $review_rating = (int)$_POST["review_rating"];
   }
-  // Generate a unique review ID
+
   $review_id =  $hotel_id . "-" . time();
   $review_date = date('Y-m-d H:i:s');
 
-  // Insert the review into the database
+
   $sql = "INSERT INTO hotel_reviews (review_id, hotel_id, review_text, review_rating, review_date)
           VALUES (?, ?, ?, ?, ?)";
 

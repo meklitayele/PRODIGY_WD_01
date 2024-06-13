@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Hotel Search</title>
 </head>
+
 <body>
     <h1>Hotel Search</h1>
     <form method="GET" action="">
@@ -17,10 +19,10 @@
         $city = $_GET['city'];
 
         // Establish a database connection (code from previous step)
-       
+
 
         // Establish a connection
-        $connection = mysqli_connect('localhost', 'root', '1234', 'Hotels');
+        $connection = mysqli_connect('localhost', 'root', '', 'traveldb');
 
         // Check the connection
         if (!$connection) {
@@ -56,4 +58,5 @@
     }
     ?>
 </body>
+
 </html>
