@@ -29,11 +29,9 @@
             die('Failed to connect to the database: ' . mysqli_connect_error());
         }
 
-        // Prepare and execute the SELECT query with a JOIN
         $query = "SELECT hotelTable.*, citytable.CityName FROM hotelTable INNER JOIN citytable ON hotelTable.CityID = citytable.CityID WHERE citytable.CityName LIKE '%$city%'";
         $result = mysqli_query($connection, $query);
 
-        // Process the query result
         if ($result) {
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
