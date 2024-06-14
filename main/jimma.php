@@ -101,11 +101,13 @@ if ($conn->connect_error) {
     </header>
 
 <body >
-    <h1>Package Booking</h1>
-    <div style ="margin : 3rem; height:30rem; width:50rem; display :flex; flex-direction: column; border: 1px solid #ccc;
+    
+    <div style ="margin : 1rem; height:40rem; width:50rem; display :flex; flex-direction: column; border: 1px solid #ccc;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);background-color:beige; gap:4rem;" class = "input-wrapper">
+    <h1>Package Booking</h1>
     <form  method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?package_id=" . $package_id; ?>">
-       <div style="display:flex ; flex-direction: column;gap:1.5rem;"> <label for="num_people">Number of People:</label>
+       <div style="display:flex ; flex-direction: column;gap:1rem;"> 
+        <label for="num_people">Number of People:</label>
         <input type="number" id="num_people" name="num_people" required>
 
         <label for="transportation">Transportation:</label>
@@ -116,6 +118,23 @@ if ($conn->connect_error) {
             <option value="train">Train</option>
         </select>
 
+        <label for="start_date">Start Date:</label>
+<select id="start_date" name="start_date" required>
+  <option value="">Select start date</option>
+  <option value="<?php echo date('Y-m-d',strtotime('+10 day')); ?>"><?php echo date('Y-m-d',strtotime('+10 day')); ?></option>
+  <option value="<?php echo date('Y-m-d', strtotime('+30 day')); ?>"><?php echo date('Y-m-d', strtotime('+30 day')); ?></option>
+  <option value="<?php echo date('Y-m-d', strtotime('+50 days')); ?>"><?php echo date('Y-m-d', strtotime('+50 days')); ?></option>
+</select>
+
+<label for="end_date">End Date:</label>
+<select id="end_date" name="end_date" required>
+  <option value="">Select end date</option>
+  <option value="<?php echo date('Y-m-d',strtotime('+15 day')); ?>"><?php echo date('Y-m-d',strtotime('+15 day')); ?></option>
+  <option value="<?php echo date('Y-m-d', strtotime('+45 day')); ?>"><?php echo date('Y-m-d', strtotime('+45 day')); ?></option>
+  <option value="<?php echo date('Y-m-d', strtotime('+50 days')); ?>"><?php echo date('Y-m-d', strtotime('+50 days')); ?></option>
+</select>
+        
+
         <input type="submit" name="submit" value="Calculate Price">
        </div>
     </form>
@@ -123,9 +142,17 @@ if ($conn->connect_error) {
     <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_people = $_POST["num_people"];
     $transportation = $_POST["transportation"];
+    $start_date = $_POST["start_date"];
+    $end_date = $_POST["end_date"];
+    
+    $start = new DateTime($start_date);
+    $end = new DateTime($end_date);
+    $interval = $start->diff($end);
+    $num_days = $interval->days;
 
+    
+    $total_price = $package_price * $num_people * $num_days;
 
-    $total_price = $package_price * $num_people;
 
     echo "<p>Total Price: $" . number_format($total_price, 2) . "</p>";
     echo "<a href='payment.php?total_price=" . $total_price . "'>Pay Now</a>";
